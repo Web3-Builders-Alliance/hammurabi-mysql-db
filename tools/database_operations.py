@@ -2,8 +2,8 @@ from pymongo import MongoClient
 
 def dump_to_mongodb(all_batch_results, mongo_uri, db_name, collection_name): 
     client = MongoClient(mongo_uri)
-    db = client.db_name
-    collection = db["orca"]
+    db = client[db_name]
+    collection = db[collection_name]
 
     if all_batch_results: 
         collection.insert_many(all_batch_results)

@@ -8,7 +8,7 @@ csv_files = [f for f in all_files if f.endswith('.csv')]
 
 df_list = []
 
-for csv in csv_files 
+for csv in csv_files: 
     file_path = os.path.join(folder_path, csv)
     try: 
         df = pd.read_csv(file_path)
