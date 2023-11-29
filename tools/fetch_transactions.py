@@ -4,6 +4,7 @@ import pandas as pd
 from dotenv import load_dotenv
 from solana.rpc.api import Client
 from solders.signature import Signature
+from solders.transaction_status import EncodedConfirmedTransactionWithStatusMeta, EncodedTransactionWithStatusMeta
 from .query import get_transaction_hash
 
 def fetch_transactions_in_batches(sql_query, quicknode_client_url):
@@ -31,7 +32,6 @@ def fetch_transactions_in_batches(sql_query, quicknode_client_url):
             try: 
                 sig = Signature.from_string(tx_id)
                 response = solana_client.get_transaction(sig, "jsonParsed", max_supported_transaction_version=0).value
-                
                 # Convert response to dict
                 response_dict = response_to_dict(response)
                 if response_dict:
@@ -39,7 +39,7 @@ def fetch_transactions_in_batches(sql_query, quicknode_client_url):
                 else:
                     print(f"No valid response for transaction ID {tx_id}")
             except Exception as e: 
-                print(f"Error processing transaction ID: {tx_id}")
+                print(f"Error processing transaction ID: {tx_id}, {e}")
                 failed_tx_ids.append(tx_id)
             finally: 
                 processed_transactions += 1
@@ -66,24 +66,60 @@ def fetch_transactions_in_batches(sql_query, quicknode_client_url):
     try: 
         os.makedirs('data-seed', exist_ok=True)
         with open('data-seed/all_batch_results.json', 'w') as f:
+            print(all_batch_results)
             json.dump(all_batch_results, f)
     except Exception as e: 
         print(f"Error saving data to file: {e}")
-    print(type(all_batch_results))
     return all_batch_results
 
 def chunk_list(lst, n):
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
 
-def response_to_dict(response): 
-    if isinstance(response, str): 
-        try:
-            return json.loads(response)
-        except json.JSONDecodeError: 
-            print("Error decoding JSON response")
-            return None
-    elif hasattr(response, '__dict__'): 
-        return response.__dict__
-    else: 
-        return response
+def parse_ui_transaction(ui_transaction):
+    return {
+        "signatures": [str(signature) for signature in ui_transaction.signatures],
+        "message": parse_ui_parsed_message(ui_transaction.message) if ui_transaction.message else None,
+        # Add other fields as necessary
+    }
+
+def parse_ui_parsed_message(ui_parsed_message):
+    return {
+        "account_keys": [parse_parsed_account(account) for account in ui_parsed_message.account_keys],
+        "recent_blockhash": str(ui_parsed_message.recent_blockhash),
+        "instructions": [parse_ui_instruction(instruction) for instruction in ui_parsed_message.instructions],
+        # Add other fields as necessary
+    }
+
+def parse_parsed_account(parsed_account):
+    return {
+        "pubkey": str(parsed_account.pubkey),
+        "writable": parsed_account.writable,
+        "signer": parsed_account.signer,
+        # Add other fields as necessary
+    }
+
+def parse_ui_instruction(instruction):
+    # Implement the parsing logic for UiPartiallyDecodedInstruction
+    return {
+        # Example fields
+        "program_id": str(instruction.program_id),
+        "data": instruction.data,
+        # Add other fields as necessary
+    }
+
+def response_to_dict(obj):
+    if isinstance(obj, EncodedConfirmedTransactionWithStatusMeta):
+        transaction_data = obj.transaction
+        if isinstance(transaction_data, EncodedTransactionWithStatusMeta):
+            ui_transaction = transaction_data.transaction  # Assuming this is a UiTransaction object
+            return {
+                "slot": obj.slot,
+                "transaction": parse_ui_transaction(ui_transaction) if ui_transaction else None,
+                "block_time": obj.block_time,
+                # Add other fields as necessary
+            }
+    else:
+        return obj
+
+       

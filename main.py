@@ -14,7 +14,6 @@ def main():
     collection_name = 'orca'
 
     batched_transactions = fetch_transactions_in_batches(sql, quicknode_client_url)
-    print(type(batched_transactions))
     ##dump_to_mongodb(batched_transactions, mongo_uri, db_name, collection_name)
     ##print(f"Inserted {len(batched_transactions)} record into MongoDB")
 
