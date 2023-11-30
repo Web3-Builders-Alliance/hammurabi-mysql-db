@@ -1,1 +1,5 @@
-# hammurabi-mysql-db
+# Hammurabi MongoDB 
+
+## Architecture 
+
+## Data Schema
