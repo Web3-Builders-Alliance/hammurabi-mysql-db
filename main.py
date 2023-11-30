@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from tools.query import sql
 from tools.database_operations import dump_to_mongodb
 from tools.fetch_transactions import fetch_transactions_in_batches
+from tools.delete_collection import delete_all_records
 
 def main():
     load_dotenv()
@@ -13,9 +14,11 @@ def main():
     db_name = 'Hammurabi'
     collection_name = 'orca'
 
+    ##delete_all_records(mongo_uri, db_name, collection_name)
+
     batched_transactions = fetch_transactions_in_batches(sql, quicknode_client_url)
-    ##dump_to_mongodb(batched_transactions, mongo_uri, db_name, collection_name)
-    ##print(f"Inserted {len(batched_transactions)} record into MongoDB")
+    dump_to_mongodb(batched_transactions, mongo_uri, db_name, collection_name)
+    print(f"Inserted {len(batched_transactions)} record into MongoDB")
 
 if __name__ == "__main__":
     main()
@@ -24,5 +27,9 @@ if __name__ == "__main__":
 ## 1. Write script that uploads spreadsheet to MongoDB. 
 ## 2. New batch for transactions that failed and try again - DONE
 ## 3. "Loading screen" for batch job - DONE 
-## 4. Deduplication of Mongo DB on upload 
+## 4. Deduplication of Mongo DB on upload - DONE 
 ## 5. Instruction Decoding / Multi-Hop Counting 
+## 6. Code linting - move parsing of RPC call to a new file 
+## 7. Database - delete all entries in Mongo that are older than 30 days old 
+## 8. Backfill - grab all transactions to have 30 days worth of data
+## 9. Quicknode API - get second key to try if first key hits a rate limit
