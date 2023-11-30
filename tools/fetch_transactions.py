@@ -26,7 +26,7 @@ def fetch_transactions_in_batches(sql_query, quicknode_client_url):
     # Process transactions in batches
     all_batch_results = []
     failed_tx_ids = []
-    for chunk in chunk_list(tx_id_list, 3): 
+    for chunk in chunk_list(tx_id_list, 1000): 
         batch_results = []
         for tx_id in chunk: 
             try: 

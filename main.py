@@ -32,4 +32,5 @@ if __name__ == "__main__":
 ## 6. Code linting - move parsing of RPC call to a new file 
 ## 7. Database - delete all entries in Mongo that are older than 30 days old 
 ## 8. Backfill - grab all transactions to have 30 days worth of data
-## 9. Quicknode API - get second key to try if first key hits a rate limit
+## 9. Quicknode API - get second key to try if first key hits a rate limit 
+## 10. Set up second Mongo DB for data transformation
