@@ -1,0 +1,44 @@
+# This is a basic workflow that is manually triggered
+
+name: Manual workflow
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9.12
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt 
+
+      - name: Run Python script
+        env: 
+          FLIPSIDE_API: ${{ secrets.FLIPSIDE_API }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          QUICKNODE_CLIENT: ${{ secrets.QUICKNODE_CLIENT }}
+        run: python main.py
+
+      - name: commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "updated files" --allow-empty)
+
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
