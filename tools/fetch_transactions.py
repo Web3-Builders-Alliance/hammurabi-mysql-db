@@ -61,7 +61,7 @@ def fetch_transactions_in_batches(sql_query, quicknode_client_url):
                 else: 
                     print(f"No valid response for transactions ID: {tx_id}")
             except Exception as e: 
-                print(f"Failed again to process transaction ID: {tx_id}")
+                print(f"Failed again to process transaction ID {tx_id}: {e}")
 
     ## Save to data-seed folder in case database upload fails 
     try: 
