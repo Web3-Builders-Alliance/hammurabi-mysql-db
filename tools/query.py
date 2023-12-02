@@ -1,8 +1,5 @@
 import os
 from flipside import Flipside
-from dotenv import load_dotenv
-
-load_dotenv()
 
 def get_transaction_hash(api_key=None, sql_query=""):
   if api_key is None:
