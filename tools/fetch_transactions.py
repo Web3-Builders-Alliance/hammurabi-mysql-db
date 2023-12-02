@@ -35,12 +35,14 @@ def fetch_transactions_in_batches(sql_query, quicknode_client_url):
                 response = solana_client.get_transaction(sig, "jsonParsed", max_supported_transaction_version=0).value
                 # Convert response to dict
                 response_dict = response_to_dict(response)
+                print(response_dict)
                 if response_dict:
                     batch_results.append(response_dict)
                 else:
                     print(f"No valid response for transaction ID {tx_id}")
             except Exception as e: 
                 print(f"Error processing transaction ID: {tx_id}, {e}")
+                print({e})
                 failed_tx_ids.append(tx_id)
             finally: 
                 processed_transactions += 1
