@@ -8,6 +8,8 @@ from tools.fetch_transactions import fetch_transactions_in_batches
 
 def main():
     load_dotenv()
+    flipside = os.getenv("FLIPSIDE_API")
+    print(flipside)
     quicknode_client_url = os.getenv("QUICKNODE_CLIENT")
     mongo_uri = os.getenv('MONGO_URI')
     db_name = 'Hammurabi'
