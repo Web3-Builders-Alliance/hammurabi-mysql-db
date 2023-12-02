@@ -26,4 +26,4 @@ jobs:
           FLIPSIDE_API: ${{ secrets.FLIPSIDE_API }}
           MONGO_URI: ${{ secrets.MONGO_URI }}
           QUICKNODE_CLIENT: ${{ secrets.QUICKNODE_CLIENT }}
-        run: python main.py
+        run: python -u main.py
