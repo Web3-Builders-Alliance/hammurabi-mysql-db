@@ -1,6 +1,5 @@
 import os
-import sys
-import pymongo
+import csv
 from dotenv import load_dotenv
 from tools.query import sql
 from tools.database_operations import dump_to_mongodb
@@ -9,9 +8,27 @@ from tools.fetch_transactions import fetch_transactions_in_batches
 def main():
     load_dotenv()
     flipside = os.getenv("FLIPSIDE_API")
-    print(flipside)
     quicknode_client_url = os.getenv("QUICKNODE_CLIENT")
     mongo_uri = os.getenv('MONGO_URI')
+
+    ## Test 
+    data = {
+        flipside, 
+        quicknode_client_url, 
+        mongo_uri
+    }
+    folder_name = 'data-seed'
+    file_path = os.path.join(folder_name, 'variables.csv')
+    with open(file_path, 'w', newline='') as file:
+        writer = csv.writer(file)
+        # Writing the headers
+        writer.writerow(data.keys())
+        # Writing the data
+        writer.writerow(data.values())
+
+    file_path
+
+
     db_name = 'Hammurabi'
     collection_name = 'orca'
 
