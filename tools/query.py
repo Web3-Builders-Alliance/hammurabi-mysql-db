@@ -7,6 +7,7 @@ load_dotenv()
 def get_transaction_hash(api_key=None, sql_query=""):
   if api_key is None:
     api_key = os.getenv('FLIPSIDE_API')
+    print(api_key)
   
   flipside = Flipside(api_key, "https://api-v2.flipsidecrypto.xyz")
   
@@ -38,4 +39,5 @@ sql = """
     AND succeeded = true
     AND swap_from_mint = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'
     AND swap_to_mint = 'So11111111111111111111111111111111111111112'
+    LIMIT 3
 """
