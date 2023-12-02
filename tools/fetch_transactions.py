@@ -4,7 +4,6 @@ import pandas as pd
 from dotenv import load_dotenv
 from solana.rpc.api import Client
 from solders.signature import Signature
-from solders.transaction_status import EncodedConfirmedTransactionWithStatusMeta, EncodedTransactionWithStatusMeta
 from .query import get_transaction_hash
 from .parse import response_to_dict
 
@@ -32,10 +31,11 @@ def fetch_transactions_in_batches(sql_query, quicknode_client_url):
         for tx_id in chunk: 
             try: 
                 sig = Signature.from_string(tx_id)
+                print(sig)
                 response = solana_client.get_transaction(sig, "jsonParsed", max_supported_transaction_version=0).value
+                print(response)
                 # Convert response to dict
                 response_dict = response_to_dict(response)
-                print(response_dict)
                 if response_dict:
                     batch_results.append(response_dict)
                 else:
