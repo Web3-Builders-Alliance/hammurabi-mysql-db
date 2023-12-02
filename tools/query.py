@@ -1,12 +1,9 @@
 import os
 from flipside import Flipside
-from dotenv import load_dotenv
-
-load_dotenv()
 
 def get_transaction_hash(api_key=None, sql_query=""):
   if api_key is None:
-    api_key = os.getenv('FLIPSIDE_API')
+    api_key = os.environ('FLIPSIDE_API')
   
   flipside = Flipside(api_key, "https://api-v2.flipsidecrypto.xyz")
   
