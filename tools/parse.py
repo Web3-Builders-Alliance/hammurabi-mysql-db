@@ -25,7 +25,7 @@ def parse_ui_instruction(instruction):
     return {
         # Example fields
         "program_id": str(instruction.program_id),
-        "data": instruction.data,
+        "data": getattr(instruction, 'data', None)
     }
 
 def parse_ui_meta(ui_meta): 
@@ -65,12 +65,22 @@ def parse_ui_inner_instruction(ui_inner_instruction):
     }
 
 def parse_parsed_instruction(parsed_instruction):
-    return {
-        "program": parsed_instruction.program,
-        "program_id": str(parsed_instruction.program_id),
-        "parsed": parse_parsed_info(parsed_instruction.parsed) if parsed_instruction.parsed else None,
-        "stack_height": parsed_instruction.stack_height
-    }
+    if hasattr(parsed_instruction, 'data'):
+        # If 'data' attribute exists
+        return {
+            "program": parsed_instruction.program,
+            "program_id": str(parsed_instruction.program_id),
+            "data": parsed_instruction.data,
+            "stack_height": parsed_instruction.stack_height
+        }
+    else:
+        # Handle different types of instructions
+        return {
+            "program": parsed_instruction.program,
+            "program_id": str(parsed_instruction.program_id),
+            # Add other relevant fields here
+            "stack_height": parsed_instruction.stack_height
+        }
 
 def parse_parsed_info(parsed_info):
     # Assuming parsed_info is a dictionary-like object
@@ -84,10 +94,10 @@ def parse_parsed_info(parsed_info):
 
 def response_to_dict(obj):
     if isinstance(obj, EncodedConfirmedTransactionWithStatusMeta):
-        transaction_data = obj.transaction
+        transaction_data = obj.transaction if obj.transaction is not None else None
         if isinstance(transaction_data, EncodedTransactionWithStatusMeta):
             ui_transaction = transaction_data.transaction
-            ui_meta = transaction_data.meta
+            ui_meta = transaction_data.meta if transaction_data.meta is not None else None
             return {
                 "slot": obj.slot,
                 "transaction": parse_ui_transaction(ui_transaction) if ui_transaction else None,
