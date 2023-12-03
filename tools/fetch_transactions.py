@@ -18,6 +18,7 @@ def fetch_transactions_in_batches(sql_query, quicknode_client_url):
 
     # Initialize Solana client
     solana_client = Client(quicknode_client_url)
+    print(solana_client)
 
     # Console status counters
     total_transactions = len(tx_id_list)
@@ -32,7 +33,7 @@ def fetch_transactions_in_batches(sql_query, quicknode_client_url):
             try: 
                 sig = Signature.from_string(tx_id)
                 response = solana_client.get_transaction(sig, "jsonParsed", max_supported_transaction_version=0).value
-                print(solana_client.get_transaction(sig, "jsonParsed", max_supported_transaction_version=0))
+                ##print(solana_client.get_transaction(sig, "jsonParsed", max_supported_transaction_version=0))
                 # Convert response to dict
                 response_dict = response_to_dict(response)
                 if response_dict:
