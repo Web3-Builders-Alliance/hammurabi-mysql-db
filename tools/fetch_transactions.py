@@ -1,6 +1,8 @@
 import os
 import json
+import gzip
 import pandas as pd
+from datetime import datetime
 from dotenv import load_dotenv
 from solana.rpc.api import Client
 from solders.signature import Signature
@@ -65,11 +67,14 @@ def fetch_transactions_in_batches(sql_query, quicknode_client_url):
                 print(f"Failed again to process transaction ID {tx_id}: {e}")
 
     ## Save to data-seed folder in case database upload fails 
-    try: 
+    try:
         os.makedirs('data-seed', exist_ok=True)
-        with open('data-seed/all_batch_results.json', 'w') as f:
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        filename = f'data-seed/all_batch_results_{current_date}.json.gz'
+        with gzip.open(filename, 'wt', encoding='UTF-8') as f:
             json.dump(all_batch_results, f)
-    except Exception as e: 
+        print(f"Data saved to {filename}")
+    except Exception as e:
         print(f"Error saving data to file: {e}")
     return all_batch_results
 
