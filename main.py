@@ -27,8 +27,8 @@ def main():
     batched_transactions = fetch_transactions_in_batches(sql, quicknode_client_url)
 
     # Extract new signatures and update the list
-    new_signatures = [trans['transaction']['signatures'][0] for trans in batched_transactions if trans['transaction']['signatures']]
-    updated_signatures = list(set(existing_signatures + new_signatures))
+    ##new_signatures = [trans['transaction']['signatures'][0] for trans in batched_transactions if trans['transaction']['signatures']]
+    ##updated_signatures = list(set(existing_signatures + new_signatures))
 
     # Save updated signatures
     with open(signature_record_file, 'w') as file:
