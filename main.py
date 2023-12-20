@@ -10,9 +10,7 @@ def main():
     quicknode_client_url = os.getenv("QUICKNODE_CLIENT")
     access_key = os.getenv('CLOUDFLARE_ACCESS_KEY')
     secret_key = os.getenv('CLOUDFLARE_SECRET_KEY')
-    bucket_name = os.getenv('CLOUDFLARE_BUCKET_NAME')
-    print(bucket_name)
-    print(type(bucket_name))
+    bucket_name = "orca-sol-usdc"
 
     db_name = 'Hammurabi'
     collection_name = 'orca'
