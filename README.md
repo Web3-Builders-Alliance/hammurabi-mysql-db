@@ -4,6 +4,46 @@ This repository hosts a comprehensive database of transaction data for the SOL-U
 
 The eventual aim is to expand the database to feature comprehensive coverage of Orca liquidity pool data and eventually provide coverage of additional decentralized exchanges on Solana such as Raydium. However this codebase is still a work in progress. 
 
+## Setup 
+
+**Python**
+
+To use this repository, you'll need Python 3.9 and the necessary libraries installed on your local machine. Follow these steps for Mac and Linux systems:
+
+### Installing Python 3.9
+
+#### For Mac Users:
+1. You can install Python 3.9 using Homebrew, a package manager for Mac. If you don't have Homebrew installed, visit [brew.sh](https://brew.sh) to install it. Then, run the following command:
+   ```bash
+   brew install python@3.9``
+
+2. After installation, ensure that Python 3.9 is the default version: 
+``brew link python@3.9 --force --overwrite``
+
+#### For Linux Users: 
+1. On Linux, you can install Python 3.9 using the package manager. For Debian-based systems like Ubuntu, use: 
+``sudo apt-get update
+sudo apt-get install python3.9``
+
+### Installing Dependencies from `requirements.txt`
+
+1. Clone the repository and navigate to the folder: 
+``git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name``
+
+2. Install the required Python packages using: 
+``pip3 install -r requirements.txt``
+
+Now, you are all set up to run and modify the project on your local machine. 
+
+**Cloudflare R2**
+
+**Flipside Crypto**
+
+To access the Flipside Crypto dataset, you will need an API key. To obtain an API key, sign up for the app and navigate to the key management page.
+
+Alternatively, you can visit app.flipsidecrypto.com and sign up for an account using either your Discord, ETH wallet, or email. Write your query in the application's query editor, set an appropriate refresh rate in the upper right corner, and use the API button to generate a URL. Use this URL as a GET request in your code, and the Python json library to parse the query results.
+
 ## Architecture 
 
 ## Data Schema
