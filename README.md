@@ -15,7 +15,7 @@ To use this repository, you'll need Python 3.9 and the necessary libraries insta
 #### For Mac Users:
 1. You can install Python 3.9 using Homebrew, a package manager for Mac. If you don't have Homebrew installed, visit [brew.sh](https://brew.sh) to install it. Then, run the following command:
    ```bash
-   brew install python@3.9``
+   brew install python@3.9
 
 2. After installation, ensure that Python 3.9 is the default version: 
 ``brew link python@3.9 --force --overwrite``
