@@ -18,8 +18,7 @@ To use this repository, you'll need Python 3.9 and the necessary libraries insta
    brew install python@3.9
 
 2. After installation, ensure that Python 3.9 is the default version: 
-```bash
-   brew link python@3.9 --force --overwrite
+``brew link python@3.9 --force --overwrite``
 
 #### For Linux Users: 
 1. On Linux, you can install Python 3.9 using the package manager. For Debian-based systems like Ubuntu, use: 
@@ -38,6 +37,27 @@ cd your-repo-name``
 Now, you are all set up to run and modify the project on your local machine. 
 
 **Cloudflare R2**
+
+Cloudflare R2 is a cloud storage solution that offers a free tier for users. To sign up for your own free R2 bucket, follow these simple steps:
+
+1. **Create a Cloudflare Account:**
+   - Visit the [Cloudflare website](https://www.cloudflare.com/).
+   - Click on the 'Sign Up' button and follow the instructions to create a new account.
+
+2. **Access the Cloudflare Dashboard:**
+   - Once your account is set up, log in and navigate to the Cloudflare dashboard.
+
+3. **Navigate to R2 Storage:**
+   - In the dashboard, look for the 'R2 Storage' option, typically found under the 'Storage' section.
+
+4. **Create a New R2 Bucket:**
+   - Click on 'Create Bucket' or a similar option to initiate the process.
+   - Follow the on-screen instructions to name and configure your R2 bucket.
+
+5. **Review and Complete:**
+   - Review your bucket settings and confirm the creation of your new R2 bucket.
+
+Once your R2 bucket is created, you can start using it for storage purposes immediately. Remember, Cloudflare R2 offers a generous free tier, but it's important to be aware of any limitations or charges that may apply beyond the free tier usage.
 
 **Flipside Crypto**
 
