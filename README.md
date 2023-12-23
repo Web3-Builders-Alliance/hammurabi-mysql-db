@@ -66,7 +66,11 @@ Alternatively, you can visit app.flipsidecrypto.com and sign up for an account u
 
 ## Architecture 
 
+![Architecture drawio](https://github.com/jhuhnke/hammurabi-mysql-db/assets/91915469/603be1a6-7869-4751-83a1-cc7758c6a986)
+
 ## Data Schema
+
+![hammurabi_database drawio](https://github.com/jhuhnke/hammurabi-mysql-db/assets/91915469/9ce29a33-f96d-4314-9224-639b6a2fe62b)
 
 ## Contributions
 
