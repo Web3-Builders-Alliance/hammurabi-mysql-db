@@ -1,4 +1,8 @@
-# Hammurabi MongoDB 
+# Hammurabi Orca Database
+
+This repository hosts a comprehensive database of transaction data for the SOL-USDC pool on Orca, one of the leading decentralized exchanges on the Solana blockchain. Our dataset includes detailed information on each transaction, providing valuable insights for traders, analysts, and enthusiasts. 
+
+The eventual aim is to expand the database to feature comprehensive coverage of Orca liquidity pool data and eventually provide coverage of additional decentralized exchanges on Solana such as Raydium. However this codebase is still a work in progress. 
 
 ## Architecture 
 
