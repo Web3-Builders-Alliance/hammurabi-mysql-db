@@ -18,7 +18,8 @@ To use this repository, you'll need Python 3.9 and the necessary libraries insta
    brew install python@3.9
 
 2. After installation, ensure that Python 3.9 is the default version: 
-``brew link python@3.9 --force --overwrite``
+```bash
+   brew link python@3.9 --force --overwrite
 
 #### For Linux Users: 
 1. On Linux, you can install Python 3.9 using the package manager. For Debian-based systems like Ubuntu, use: 
