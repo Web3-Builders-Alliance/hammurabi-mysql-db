@@ -11,7 +11,7 @@ def main():
     quicknode_client_url = os.getenv("QUICKNODE_CLIENT")
     access_key = os.getenv('CLOUDFLARE_ACCESS_KEY')
     secret_key = os.getenv('CLOUDFLARE_SECRET_KEY')
-    bucket_name = os.getenv('CLOUDFLARE_BUCKET_NAME')
+    bucket_name = "orca-sol-usdc"
 
     # Fetch transactions
     batched_transactions = fetch_transactions_in_batches(sql, quicknode_client_url)
