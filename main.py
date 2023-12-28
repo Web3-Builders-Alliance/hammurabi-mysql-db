@@ -20,10 +20,10 @@ def main():
     batched_transactions = fetch_transactions_in_batches(sql, quicknode_client_url)
 
     # Token Metadata
-    # metadata = get_token_metadata()
-    # metadata_data = json.dumps(metadata)
-    # general_dump_to_cloudflare_r2(metadata_data, access_key, secret_key, bucket_name_metadata, f"token_metadata.json")
-    # print(f"Uploaded {len(metadata)} record to Cloudflare R2")
+    metadata = get_token_metadata()
+    metadata_data = json.dumps(metadata)
+    general_dump_to_cloudflare_r2(metadata_data, access_key, secret_key, bucket_name_metadata, f"token_metadata.json")
+    print(f"Uploaded {len(metadata)} record to Cloudflare R2")
 
     # Upload to Cloudflare R2
     current_date = datetime.now().strftime("%Y-%m-%d")

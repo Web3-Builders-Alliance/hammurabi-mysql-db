@@ -17,7 +17,6 @@ def get_token_metadata(api_key=None):
         coin_gecko_id, 
         coin_market_cap_id  
     FROM solana.core.dim_tokens
-    WHERE symbol = 'sol' OR symbol = 'usdc'
     """
 
     ## Run query and await results 
