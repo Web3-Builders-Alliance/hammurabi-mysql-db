@@ -1,27 +1,31 @@
+import os
 import requests
-from datetime import datetime, timedelta
+import csv
+from dotenv import load_dotenv
+from datetime import datetime
 
-def get_price_history(coin_id, days=1, interval='hourly'): 
+def get_price_history(coin_id, days=30):
+    load_dotenv()
+    api_key = os.getenv('COINGECKO_API_KEY')
+
     url = f"https://api.coingecko.com/api/v3/coins/{coin_id}/market_chart"
     params = {
         'vs_currency': 'usd',
-        'days': days,
-        'interval': interval
+        'days': days
     }
-    response = requests.get(url, params=params)
+    headers = {
+        'Authorization': f'Bearer {api_key}'
+    }
+    response = requests.get(url, params=params, headers=headers)
     data = response.json()
-    return data['price']
+    return data['prices']
 
-def print_price_history(coin_id, prices):
-    print(f"Price history for {coin_id.upper()} in the last 24 hours (USD):")
-    for price in prices:
-        timestamp = datetime.fromtimestamp(price[0] / 1000)
-        print(f"{timestamp}: ${price[1]:.4f}")
+def save_price_history_to_csv(coin_id, prices):
+    with open(f'{coin_id}_price_history.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Token', 'Price', 'Timestamp'])
 
-# Get historical prices
-sol_prices = get_price_history('solana')
-usdc_prices = get_price_history('usd-coin')
-
-# Print the results
-print_price_history('sol', sol_prices)
-print_price_history('usdc', usdc_prices)
+        for price_data in prices:
+            timestamp = datetime.utcfromtimestamp(price_data[0] / 1000).strftime('%Y-%m-%d %H:%M:%S')
+            price = price_data[1]
+            writer.writerow([coin_id.upper(), price, timestamp])

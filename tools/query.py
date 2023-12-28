@@ -17,8 +17,7 @@ sql = """
   FROM 
     solana.defi.fact_swaps
   WHERE 
-    block_timestamp :: date >= CURRENT_DATE - 22
-    AND block_timestamp :: date < CURRENT_DATE - 19
+    block_timestamp :: date >= CURRENT_DATE - 2
     AND swap_program ilike '%orca%'
     AND succeeded = true
     AND swap_to_mint = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'
@@ -31,11 +30,9 @@ sql = """
   FROM 
     solana.defi.fact_swaps
   WHERE 
-    block_timestamp :: date >= CURRENT_DATE - 22
-    AND block_timestamp :: date < CURRENT_DATE - 19
+    block_timestamp :: date >= CURRENT_DATE - 2
     AND swap_program ilike '%orca%'
     AND succeeded = true
     AND swap_from_mint = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'
     AND swap_to_mint = 'So11111111111111111111111111111111111111112'
-    LIMIT 1
 """
