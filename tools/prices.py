@@ -4,7 +4,7 @@ import csv
 from dotenv import load_dotenv
 from datetime import datetime
 
-def get_price_history(coin_id, days=30):
+def get_price_history(coin_id, days=1):
     load_dotenv()
     api_key = os.getenv('COINGECKO_API_KEY')
 

@@ -32,10 +32,10 @@ def main():
     print(f"Uploaded {len(metadata)} record to Cloudflare R2")
 
     # Prices 
-    sol_prices = get_price_history('solana', 30)
+    sol_prices = get_price_history('solana', 1)
     sol_price_data = json.dumps(sol_prices)
     general_dump_to_cloudflare_r2(sol_price_data, access_key, secret_key, bucket_name_price, f"sol_price_{current_date}.json")
-    usdc_prices = get_price_history('usd-coin', 30)
+    usdc_prices = get_price_history('usd-coin', 1)
     usdc_price_data = json.dumps(usdc_prices)
     general_dump_to_cloudflare_r2(usdc_price_data, access_key, secret_key, bucket_name_price, f"usdc_price_{current_date}.json")
 
