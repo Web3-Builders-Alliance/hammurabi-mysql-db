@@ -91,7 +91,7 @@ To report a bug or submit a feature request, please use the issues tab to open a
 
 Any donations are greatly appreciated and will be put torwards the cost of the database. Extra donations will likely be used to buy the dev a coffee or a beer.
 
-Solana address: 2L6j3wZXEByg8jycytabZitDh9VVMhKiMYv7EeJh6R2H
+Solana address: EJXeG1MjjKr6dCkvdZfdFr4EtYo7XCciMKh8oynLTQis
 
 ## License 
 
