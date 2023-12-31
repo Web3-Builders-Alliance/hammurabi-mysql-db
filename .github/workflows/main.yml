@@ -25,9 +25,9 @@ jobs:
           FLIPSIDE_API: ${{ secrets.FLIPSIDE_API }}
           MONGO_URI: ${{ secrets.MONGO_URI }}
           QUICKNODE_CLIENT: ${{ secrets.QUICKNODE_CLIENT }}
-          CLOUDFLARE_ACCESS_KEY: $${{ secrets.CLOUDFLARE_ACCESS_KEY}}
-          CLOUDFLARE_SECRET_KEY: $${{ secrets.CLOUDFLARE_SECRET_KEY}}
-          COINGECKO_API_KEY: $${{ secrets.COINGECKO_API_KEY}}
+          CLOUDFLARE_ACCESS_KEY: $${{ secrets.CLOUDFLARE_ACCESS_KEY }}
+          CLOUDFLARE_SECRET_KEY: $${{ secrets.CLOUDFLARE_SECRET_KEY }}
+          COINGECKO_API_KEY: $${{ secrets.COINGECKO_API_KEY }}
         run: python main.py
 
       - name: commit files
