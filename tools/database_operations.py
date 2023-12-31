@@ -32,7 +32,7 @@ def dump_to_cloudflare_r2(all_batch_results, access_key, secret_key, bucket_name
 
 def general_dump_to_cloudflare_r2(all_batch_results, access_key, secret_key, bucket_name, file_name):
     # Initialize the S3 client
-    s3_client = boto3.client('s3', aws_access_key_id=access_key, aws_secret_access_key=secret_key, endpoint_url='https://37a4fe05d373bdc73551b5386c2c4cb3.r2.cloudflarestorage.com/token-metadata')
+    s3_client = boto3.client('s3', aws_access_key_id=access_key, aws_secret_access_key=secret_key, endpoint_url='https://37a4fe05d373bdc73551b5386c2c4cb3.r2.cloudflarestorage.com')
 
     if all_batch_results:
         try:
