@@ -22,22 +22,22 @@ def main():
 
     # Upload transactions to Cloudflare R2
     current_date = datetime.now().strftime("%Y-%m-%d")
-    dump_to_cloudflare_r2(batched_transactions, access_key, secret_key, orca-sol-usdc, f"{current_date}2.json")
+    dump_to_cloudflare_r2(batched_transactions, access_key, secret_key, bucket_name, f"{current_date}2.json")
     print(f"Uploaded {len(batched_transactions)} records to Cloudflare R2")
 
     # Token Metadata
     metadata = get_token_metadata()
     metadata_data = json.dumps(metadata)
-    general_dump_to_cloudflare_r2(metadata_data, access_key, secret_key, token-metadata, f"token_metadata.json")
+    general_dump_to_cloudflare_r2(metadata_data, access_key, secret_key, bucket_name_metadata, f"token_metadata.json")
     print(f"Uploaded {len(metadata)} record to Cloudflare R2")
 
     # Prices 
     sol_prices = get_price_history('solana', 1)
     sol_price_data = json.dumps(sol_prices)
-    general_dump_to_cloudflare_r2(sol_price_data, access_key, secret_key, token-price, f"sol_price_{current_date}.json")
+    general_dump_to_cloudflare_r2(sol_price_data, access_key, secret_key, bucket_name_price, f"sol_price_{current_date}.json")
     usdc_prices = get_price_history('usd-coin', 1)
     usdc_price_data = json.dumps(usdc_prices)
-    general_dump_to_cloudflare_r2(usdc_price_data, access_key, secret_key, token-price, f"usdc_price_{current_date}.json")
+    general_dump_to_cloudflare_r2(usdc_price_data, access_key, secret_key, bucket_name_price, f"usdc_price_{current_date}.json")
 
 if __name__ == "__main__":
     main()
