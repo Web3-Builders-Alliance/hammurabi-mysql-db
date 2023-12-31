@@ -35,5 +35,5 @@ sql = """
     AND succeeded = true
     AND swap_from_mint = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'
     AND swap_to_mint = 'So11111111111111111111111111111111111111112'
-    LIMIT 2
+    LIMIT 1
 """
