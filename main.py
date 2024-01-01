@@ -24,7 +24,7 @@ def main():
 
     # Upload transactions to Cloudflare R2
     current_date = datetime.now().strftime("%Y-%m-%d")
-    dump_to_cloudflare_r2(batched_transactions, access_key, secret_key, bucket_name, f"{current_date}2.json")
+    dump_to_cloudflare_r2(batched_transactions, access_key, secret_key, bucket_name, f"{current_date}.json")
     print(f"Uploaded {len(batched_transactions)} records to Cloudflare R2")
 
     # Token Metadata
