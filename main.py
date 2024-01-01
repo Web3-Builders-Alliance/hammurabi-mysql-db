@@ -12,8 +12,6 @@ def main():
     load_dotenv()
     quicknode_client_url = os.getenv("QUICKNODE_CLIENT")
     access_key = os.getenv('CLOUDFLARE_ACCESS_KEY')
-    print(access_key)
-    print(len(access_key))
     secret_key = os.getenv('CLOUDFLARE_SECRET_KEY')
     bucket_name = "orca-sol-usdc"
     bucket_name_price = "token-price"
